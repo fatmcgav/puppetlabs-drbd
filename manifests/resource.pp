@@ -50,8 +50,6 @@ define drbd::resource (
   $handlers       = undef,) {
   include drbd
 
-  notify {"${name}":}
-
   Exec {
     path      => ['/bin', '/sbin', '/usr/bin'],
     logoutput => 'on_failure',
