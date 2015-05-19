@@ -50,6 +50,8 @@ define drbd::resource (
   $handlers       = undef,) {
   include drbd
 
+  notify {"${name}":}
+
   Exec {
     path      => ['/bin', '/sbin', '/usr/bin'],
     logoutput => 'on_failure',
@@ -68,6 +70,7 @@ define drbd::resource (
   }
 
   concat { "/etc/drbd.d/${name}.res":
+    ensure  => 'present',
     mode    => '0600',
     require => [Package['drbd'], File['/etc/drbd.d'],],
     notify  => Class['drbd::service'],
@@ -146,19 +149,19 @@ define drbd::resource (
 
   # Due to a bug in puppet, defined() conditionals must be in a defined
   # resource to be evaluated *after* the collector instead of before.
-  drbd::resource::enable { $name:
-    manage        => $manage,
-    disk          => $disk,
-    fs_type       => $fs_type,
-    mkfs_opts     => $mkfs_opts,
-    device        => $device,
-    ha_primary    => $ha_primary,
-    initial_setup => $initial_setup,
-    cluster       => $cluster ? {
-      undef   => 'static',
-      default => $cluster,
-    },
-    mountpoint    => $mountpoint,
-    automount     => $automount,
-  }
+#  drbd::resource::enable { $name:
+#    manage        => $manage,
+#    disk          => $disk,
+#    fs_type       => $fs_type,
+#    mkfs_opts     => $mkfs_opts,
+#    device        => $device,
+#    ha_primary    => $ha_primary,
+#    initial_setup => $initial_setup,
+#    cluster       => $cluster ? {
+#      undef   => 'static',
+#      default => $cluster,
+#    },
+#    mountpoint    => $mountpoint,
+#    automount     => $automount,
+#  }
 }
