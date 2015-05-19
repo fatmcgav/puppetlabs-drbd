@@ -36,7 +36,7 @@ define drbd::resource::up (
 
 
   # these resources should only be applied if we are configuring the
-  # primary node in our HA setup
+  # primary node in our HA setup - Fix this for use with pacemaker
   if $ha_primary {
     # these things should only be done on the primary during initial setup
     if $initial_setup {
