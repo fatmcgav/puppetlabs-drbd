@@ -4,7 +4,7 @@ class drbd::params {
   case $::osfamily {
     'RedHat' : {
       $drbd_package = 'drbd84-utils'
-      $drbd_kernel_package = 'kmod-drbd84-8.4.5-1.el6.elrepo'
+      $drbd_kernel_package = 'kmod-drbd84'
     }
     'Debian' : {
       $drbd_package = ['drbd8-utils']
