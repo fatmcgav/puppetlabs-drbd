@@ -47,7 +47,9 @@ define drbd::resource (
   $initial_setup  = false,
   $fs_type        = 'ext4',
   $mkfs_opts      = '',
-  $handlers       = undef,) {
+  $handlers       = undef,
+  $self_ip        = $::ipaddress,
+  $self_name      = $::hostname ) {
   include drbd
 
   Exec {
