@@ -18,6 +18,7 @@ class drbd (
     package { 'drbd_kernel':
       ensure => present,
       name   => $drbd_kernel_package,
+      before => Exec['modprobe drbd']
     }
   }
 
